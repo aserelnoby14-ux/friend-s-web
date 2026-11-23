@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#0b1020">
+<title>أكاديمية الأسرار: إرث العناصر</title>
+<style>
+:root{--bg:#090e1b;--panel:#131d31;--panel2:#1b2942;--line:#344866;--gold:#f0c66e;--violet:#b89aff;--mint:#71dfb1;--red:#ff8c91;--muted:#aebbd0}
+*{box-sizing:border-box}body{margin:0;color:#f5f2ed;background:radial-gradient(ellipse at 50% -15%,#334568 0,#111a2d 43%,#080d18 100%);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh;padding:16px}
+main{max-width:760px;margin:auto}.hero,.card{background:linear-gradient(145deg,#1b2942,#111a2b);border:1px solid var(--line);border-radius:18px;padding:18px;margin:12px 0;box-shadow:0 12px 30px #0005}.hero{text-align:center;padding:24px 16px}.eyebrow{color:var(--gold);font-size:13px;letter-spacing:1px}.hero h1{margin:8px 0;font-size:28px}.muted{color:var(--muted);font-size:14px;line-height:1.7}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}.stat{background:#0c1424;border:1px solid #2a3c59;border-radius:12px;padding:10px}.stat b{display:block;color:var(--gold);font-size:20px}h2{font-size:19px;margin:0 0 12px;color:var(--gold)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.choice,button,select{font:inherit}.choice{border:1px solid #405779;border-radius:13px;background:#101a2c;color:#fff;padding:12px;text-align:center;cursor:pointer}.choice.active{border-color:var(--gold);background:#3b3150}.choice strong{display:block;margin-bottom:4px}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}button{border:1px solid #52627d;background:linear-gradient(180deg,#293b59,#1a2941);color:#fff;border-radius:12px;padding:11px 14px;cursor:pointer}button.primary{background:linear-gradient(135deg,#8060c5,#51418b);border-color:#a58be4}button:disabled{opacity:.4}.log{background:#0a1220;border:1px solid #293b57;border-radius:12px;padding:12px;min-height:68px;line-height:1.7}.spell{border-bottom:1px solid #2b3a52;padding:9px 0}.spell:last-child{border:0}.tag{display:inline-block;color:var(--mint);font-size:12px;margin-inline-start:6px}footer{text-align:center;color:#8190a8;font-size:12px;padding:18px}
+@media(max-width:420px){body{padding:10px}.hero h1{font-size:23px}.stats{grid-template-columns:repeat(3,1fr)}.stat{padding:8px}.grid{gap:7px}}
+</style>
+</head>
+<body><main>
+<section class="hero"><div class="eyebrow">رحلتك تبدأ من هنا</div><h1>🏰 أكاديمية الأسرار</h1><div class="muted">إرث العناصر · مغامرة سحرية تعمل دون إنترنت</div><div class="stats"><div class="stat">💰 الذهب<b id="gold">50</b></div><div class="stat">⭐ المستوى<b id="level">1</b></div><div class="stat">⚡ الطاق id="energy">10</b></div></div></section>
+<section class="card"><h2>اختيار التخصص السحري</h2><div class="grid" id="elements"></div><p class="muted" id="chosen">اختر عنصرًا لتبدأ تدريبك.</p></section>
+<section class="card"><h2>دمج العناصر</h2><div class="grid" id="fusion"></div><div class="actions"><button class="primary" onclick="fuse()">اكتشاف قدرة الدمج</button></div><p class="muted" id="fusionResult">اختر عنصرين مختلفين لابتكار تعويذة جديدة.</p></section>
+<section class="card"><h2>ساحة التدريب</h2><div class="actions"><button onclick="train()">📖 حضور درس (−2 طاقة)</button><button onclick="duel()">⚔️ مبارزة تدريبية (−3 طاقة)</button><button onclick="rest()">🛏️ استراحة واستعادة الطاقة</button><button onclick="quest()">🗺️ تنفيذ مهمة</button></div><div class="log" id="log">مرحبًا بك في الأكاديمية. اختر تخصصك ثم ابدأ التدريب.</div></section>
+<section class="card"><h2>دفتر التعويذات</h2><div id="spells" class="muted">لم تتعلم تعويذات بعد.</div></section>
+<div class="actions"><button onclick="save()">💾 حفظ التقدم</button><button onclick="resetGame()">بدء لعبة جديدة</button></div>
+<footer>نسخة HTML تعمل محليًا · يتم حفظ التقدم على هذا الجهاز</footer>
+</main>
+<script>
+const names=[['🔥','النار'],['💧','الماء'],['❄️','الجليد'],['🌿','الطبيعة'],['🌑','الظلال'],['⌛','الزمن']];
+const combos={ 'النار|الماء':'البخار المتحو​ل','النار|الجليد':'اللهب المتجم​د','النار|الطبيعة':'غابة الرماد','النار|الظلال':'جمر الظلال','النار|الزمن':'لهيب اللحظة','الماء|الجليد':'بل​ورة المد​','الماء|الطبيعة':'نبض الحياة','الماء|الظلال':'ضباب العتمة','الماء|الزمن':'نهر اللحظات','الجليد|الطبيعة':'حديقة الشتاء','الجليد|الظلال':'صقيع الليل','الجليد|الزمن':'تجميد الثانية','الطبيعة|الظلال':'جذور الغسق','الطبيعة|الزمن':'براعم الماضي','الظلال|الزمن':'شق​ الزمن'};
+let state={gold:50,level:1,energy:10,element:'',second:'',xp:0,spells:[],wins:0};
+function render(){document.getElementById('gold').textContent=state.gold;document.getElementById('level').textContent=state.level;document.getElementById('energy').textContent=state.energy;document.getElementById('elements').innerHTML=names.map(([ico,n])=>`<button class="choice ${state.element===n?'active':''}" onclick="pick('${n}')"><strong>${ico} ${n}</strong><span class="muted">تخصص سحري</span></button>`).join('');document.getElementById('fusion').innerHTML=names.map(([ico,n])=>`<button class="choice ${state.second===n?'active':''}" onclick="pickSecond('${n}')">${ico} ${n}</button>`).join('');document.getElementById('chosen').textContent=state.element?'تخصصك الحالي: '+state.element:'اختر عنصرًا لتبدأ تدريبك.';document.getElementById('spells').innerHTML=state.spells.length?state.spells.map(s=>`<div class="spell">✨ ${s}</div>`).join(''):'لم تتعلم تعويذات بعد.';}
+function say(t){document.getElementById('log').textContent=t;save()}
+function pick(n){state.element=n;if(!state.spells.length)state.spells.push('شرارة '+n);render();say('تم اختيار '+n+'. بدأ تدريبك الأول!')}
+function pickSecond(n){state.second=n;render();document.getElementById('fusionResult').textContent='العنصر الثاني: '+n}
+function fuse(){if(!state.element||!state.second||state.element===state.second){document.getElementById('fusionResult').textContent='اختَر تخصصًا وعنصرًا ثاني
